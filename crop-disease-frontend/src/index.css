@@ -1,68 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════
+   AGRI-TECH INTELLIGENCE CONSOLE
+   Global Design System
+═══════════════════════════════════════ */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --agri-dark: #0F1A14;
+    --agri-surface: #1A2820;
+    --agri-border: #2A3D30;
+    --agri-green: #2F8F5B;
+    --agri-amber: #E4B363;
+    --agri-red: #B33A3A;
+    --agri-text: #EAEFEA;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+    box-sizing: border-box;
 }
-a:hover {
-  color: #535bf2;
+
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    background-color: var(--agri-dark);
+    color: var(--agri-text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::-webkit-scrollbar-track {
+    background: var(--agri-dark);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+::-webkit-scrollbar-thumb {
+    background: var(--agri-border);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--agri-green);
+}
+
+/* ═══ TYPOGRAPHY ═══ */
+@layer components {
+    .h1-console {
+        @apply font-display font-bold text-white leading-none tracking-tight;
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+    }
+
+    .h2-console {
+        @apply font-display font-semibold text-white tracking-tight;
+    }
+
+    .label-console {
+        @apply text-[10px] font-mono uppercase tracking-[0.2em] text-agri-text/50;
+    }
+
+    /* ═══ CARDS ═══ */
+    .console-card {
+        @apply bg-agri-surface border border-agri-border rounded-sm p-6;
+    }
+
+    .console-card-dark {
+        @apply bg-agri-dark border border-agri-border rounded-sm p-6;
+    }
+
+    /* ═══ BUTTONS ═══ */
+    .btn-primary {
+        @apply inline-flex items-center gap-2 px-5 py-2.5 bg-agri-green text-white text-xs font-semibold uppercase tracking-widest rounded-sm hover:bg-agri-green/80 active:scale-95 transition-all duration-150 disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed;
+    }
+
+    .btn-outline {
+        @apply inline-flex items-center gap-2 px-5 py-2.5 border border-agri-border text-agri-text/60 text-xs font-semibold uppercase tracking-widest rounded-sm hover:border-agri-text/40 hover:text-agri-text transition-all duration-150;
+    }
+
+    .btn-danger {
+        @apply inline-flex items-center gap-2 px-5 py-2.5 border border-agri-red/40 text-agri-red text-xs font-semibold uppercase tracking-widest rounded-sm hover:bg-agri-red/10 transition-all duration-150;
+    }
+
+    /* ═══ INPUTS ═══ */
+    .input-field {
+        @apply w-full px-4 py-3 bg-agri-dark border border-agri-border text-agri-text placeholder-agri-text/30 text-sm font-sans rounded-sm focus:outline-none focus:border-agri-green transition-colors duration-200;
+    }
+
+    /* ═══ BADGES ═══ */
+    .badge {
+        @apply inline-flex items-center px-2 py-0.5 text-[9px] font-mono uppercase tracking-[0.15em] rounded-sm border;
+    }
+
+    .badge-green {
+        @apply badge bg-agri-green/10 text-agri-green border-agri-green/30;
+    }
+
+    .badge-red {
+        @apply badge bg-agri-red/10 text-agri-red border-agri-red/30;
+    }
+
+    .badge-amber {
+        @apply badge bg-agri-amber/10 text-agri-amber border-agri-amber/30;
+    }
+
+    .badge-grey {
+        @apply badge bg-agri-text/5 text-agri-text/50 border-agri-border;
+    }
+
+    /* ═══ TABLES ═══ */
+    .table-header {
+        @apply px-5 py-3 text-[10px] font-mono uppercase tracking-widest text-agri-text/40 bg-agri-dark border-b border-agri-border text-left;
+    }
+
+    .table-cell {
+        @apply px-5 py-4 text-sm font-sans border-b border-agri-border/50;
+    }
+
+    /* ═══ SPINNER ═══ */
+    .spinner {
+        @apply inline-block w-5 h-5 border-2 border-agri-border border-t-agri-green rounded-full animate-spin;
+    }
 }

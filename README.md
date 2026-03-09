@@ -7,27 +7,27 @@ This project is an AI-powered crop disease prediction system built using:
 - 🧠 CNN (MobileNetV2 – Transfer Learning)
 - 🐍 Flask (ML Microservice)
 - ☕ Spring Boot (Backend API)
-- ⚛ React (Frontend - Vite)
-- 🗄 MySQL (Database)
-
-The system allows users to upload crop leaf images and receive:
-
-- Disease Name
-- Prediction Confidence
-- Severity Level
-- (Future) Treatment Recommendation
-- (Future) Weather-Based Risk Analysis
+- 🤖 AI Assistant (Floating Chatbot with FAQ Context)
+- 🌡️ Weather Risk Intelligence (Real-time Disease Forecasting)
+- 🌎 Multi-Language Support (English, Hindi, Tamil)
+- 🛡️ Admin Intelligence Console (Secured Knowledge Base Management)
+- ⚛️ React 18+ (Vite) / Spring Boot 3+ / Flask 3+
+- 🗄️ MySQL (Relational Diagnostic Storage)
 
 ---
 
-## 🏗 System Architecture
-React (Frontend)
-↓
-Spring Boot (Backend API)
-↓
-Flask (ML Microservice)
-↓
-CNN Model (MobileNetV2)
+## 🏗️ System Architecture
+
+```mermaid
+graph TD
+    User((Farmer / Admin)) -->|React + Vite| Frontend[AgriAI Console]
+    Frontend -->|JWT Auth| Backend[Spring Boot API]
+    Backend -->|Spring Security| Admin[Intelligence Console]
+    Backend -->|WeatherService| Weather[Risk Intelligence]
+    Backend -->|WebClient| ML_Service[Flask ML Service]
+    ML_Service -->|TensorFlow| CNN[CNN MobileNetV2]
+    Admin -->|JPA| DB[(MySQL)]
+```
 
 
 ---
