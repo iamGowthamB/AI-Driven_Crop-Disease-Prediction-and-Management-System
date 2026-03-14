@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/weather/**").permitAll()
+                        .requestMatchers("/api/predictions/**").permitAll()
                         .anyRequest().authenticated());
 
         http.addFilterBefore(jwtRequestFilter,
