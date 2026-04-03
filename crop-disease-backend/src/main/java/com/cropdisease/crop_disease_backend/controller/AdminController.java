@@ -95,4 +95,13 @@ public class AdminController {
         userRepo.save(user);
         return ResponseEntity.ok(Map.of("message", "Role updated"));
     }
+
+    // ════════════════════════════════════════
+    // All Predictions (System-wide) → /api/admin/predictions
+    // ════════════════════════════════════════
+    @GetMapping("/api/admin/predictions")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getAllPredictions() {
+        return ResponseEntity.ok(predictionRepo.findAll());
+    }
 }

@@ -4,15 +4,15 @@ import { useAuth } from '../../context/AuthContext.jsx';
 import {
     LayoutDashboard, ScanLine, History, CloudLightning,
     BookOpen, MessageSquare, Settings, LogOut, Shield,
-    Database, Users, ChevronDown, ChevronUp, Menu, X,
+    Database, Users, Menu, X, Leaf
 } from 'lucide-react';
 
 const USER_LINKS = [
-    { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
+    { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { path: '/scan', icon: ScanLine, label: 'Diagnostic Scan' },
     { path: '/history', icon: History, label: 'Scan History' },
     { path: '/weather', icon: CloudLightning, label: 'Weather Risk' },
-    { path: '/encyclopedia', icon: BookOpen, label: 'Disease Encyclopedia' },
+    { path: '/encyclopedia', icon: BookOpen, label: 'Encyclopedia' },
     { path: '/chatbot', icon: MessageSquare, label: 'AgriBot AI' },
     { path: '/settings', icon: Settings, label: 'Settings' },
 ];
@@ -29,19 +29,19 @@ function NavItem({ path, icon: Icon, label }) {
     return (
         <NavLink
             to={path}
-            end={path === '/'}
+            end={path === '/dashboard'}
             className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm font-medium transition-all duration-150 group relative
+                `flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all duration-200 group relative
         ${isActive
-                    ? 'bg-agri-surface border border-agri-border text-white'
-                    : 'text-agri-text/50 hover:text-agri-text hover:bg-agri-surface/50 border border-transparent'
+                    ? 'bg-white shadow-md shadow-stone-200/50 border border-stone-200/60 font-bold text-emerald-700'
+                    : 'text-stone-500 font-medium hover:text-stone-800 hover:bg-stone-100 border border-transparent'
                 }`
             }
         >
             {({ isActive }) => (
                 <>
-                    {isActive && <div className="absolute left-0 top-1 bottom-1 w-0.5 bg-agri-green rounded-r-full" />}
-                    <Icon size={15} className={`shrink-0 ${isActive ? 'text-agri-green' : 'text-agri-text/30 group-hover:text-agri-text/60'}`} />
+                    {isActive && <div className="absolute left-0 top-2 bottom-2 w-1.5 bg-emerald-500 rounded-r-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />}
+                    <Icon size={18} className={`shrink-0 ${isActive ? 'text-emerald-600' : 'text-stone-400 group-hover:text-stone-600'} transition-colors`} />
                     <span>{label}</span>
                 </>
             )}
@@ -63,22 +63,23 @@ export default function Navbar() {
     };
 
     const SidebarBody = () => (
-        <div className="flex flex-col h-full bg-agri-dark border-r border-agri-border w-60 overflow-y-auto">
+        <div className="flex flex-col h-full bg-stone-50/80 backdrop-blur-xl border-r border-stone-200/60 w-64 overflow-y-auto">
             {/* Brand */}
-            <div className="px-4 pt-6 pb-4 border-b border-agri-border">
-                <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 bg-agri-green/10 border border-agri-green/30 flex items-center justify-center rounded-sm shrink-0">
-                        <Shield size={16} className="text-agri-green" />
+            <div className="px-6 pt-8 pb-6 border-b border-stone-200/50">
+                <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
+                    <div className="w-10 h-10 bg-gradient-to-tr from-emerald-500 to-green-600 shadow-lg shadow-emerald-600/20 flex items-center justify-center rounded-xl shrink-0 group-hover:scale-105 transition-transform">
+                        <Leaf size={20} className="text-white relative z-10" />
                     </div>
                     <div>
-                        <p className="text-sm font-display font-bold text-white leading-none">Agri-Tech</p>
-                        <p className="text-[8px] font-mono uppercase tracking-[0.2em] text-agri-green">Intelligence Console</p>
+                        <p className="text-xl font-display font-bold text-stone-900 leading-none">NexAgri<span className="text-emerald-600">.</span></p>
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-stone-500 mt-1">Intelligence</p>
                     </div>
                 </div>
             </div>
 
             {/* Navigation */}
-            <nav className="flex-1 px-3 py-4 space-y-0.5">
+            <nav className="flex-1 px-4 py-6 space-y-1.5">
+                <p className="px-4 text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-3">Menu</p>
                 {links.map((link) => (
                     <NavItem key={link.path} {...link} />
                 ))}
@@ -86,22 +87,22 @@ export default function Navbar() {
 
             {/* User Footer */}
             {user && (
-                <div className="px-3 pb-5 border-t border-agri-border pt-4 space-y-3">
-                    <div className="flex items-center gap-3 px-2">
-                        <div className="w-8 h-8 rounded-sm bg-agri-green/10 border border-agri-green/20 flex items-center justify-center text-agri-green text-xs font-bold shrink-0">
+                <div className="p-4 border-t border-stone-200/50 bg-white/40">
+                    <div className="flex items-center gap-3 p-3 bg-white border border-stone-200 rounded-2xl shadow-sm mb-3 relative overflow-hidden group hover:border-emerald-200 transition-colors">
+                        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-emerald-100 to-transparent rounded-bl-full opacity-50 pointer-events-none" />
+                        <div className="w-10 h-10 rounded-xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-700 text-sm font-bold shrink-0 shadow-inner">
                             {initials}
                         </div>
-                        <div className="min-w-0">
-                            <p className="text-xs font-semibold text-white truncate">{user.fullName}</p>
-                            <p className="text-[9px] font-mono uppercase tracking-widest text-agri-text/40">{user.role}</p>
+                        <div className="min-w-0 relative z-10">
+                            <p className="text-sm font-bold text-stone-900 truncate">{user.fullName}</p>
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-600">{user.role}</p>
                         </div>
-                        <div className="ml-auto w-1.5 h-1.5 rounded-full bg-agri-green shrink-0" />
                     </div>
                     <button
                         onClick={handleLogout}
-                        className="w-full flex items-center justify-center gap-2 py-2 text-xs font-semibold text-agri-red/70 border border-transparent hover:border-agri-red/20 hover:bg-agri-red/5 rounded-sm transition-colors"
+                        className="w-full flex items-center justify-center gap-2 py-3 text-sm font-bold text-stone-500 bg-stone-100 hover:bg-red-50 hover:text-red-600 hover:shadow-sm rounded-xl transition-all"
                     >
-                        <LogOut size={13} /> Logout
+                        <LogOut size={16} /> Logout
                     </button>
                 </div>
             )}
@@ -111,32 +112,30 @@ export default function Navbar() {
     return (
         <>
             {/* Desktop */}
-            <div className="hidden md:flex h-screen sticky top-0 shrink-0">
+            <div className="hidden lg:flex h-screen sticky top-0 shrink-0 z-40 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
                 <SidebarBody />
             </div>
 
-            {/* Mobile toggle */}
-            <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-agri-dark border-b border-agri-border px-4 py-3 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <Shield size={16} className="text-agri-green" />
-                    <span className="font-display font-bold text-white">Agri-Tech</span>
+            {/* Mobile toggle Header */}
+            <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-stone-200 px-6 py-4 flex items-center justify-between shadow-sm">
+                <div className="flex items-center gap-2" onClick={() => navigate('/')}>
+                    <Leaf size={24} className="text-emerald-600" />
+                    <span className="font-display font-bold text-xl text-stone-900">NexAgri<span className="text-emerald-600">.</span></span>
                 </div>
-                <button onClick={() => setMobileOpen(!mobileOpen)} className="text-agri-text/70">
-                    {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                <button onClick={() => setMobileOpen(!mobileOpen)} className="text-stone-600 p-2 hover:bg-stone-100 rounded-xl transition-colors">
+                    {mobileOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
             {/* Mobile overlay */}
             {mobileOpen && (
-                <div className="md:hidden fixed inset-0 z-40 flex" onClick={() => setMobileOpen(false)}>
-                    <div className="bg-agri-dark/80 backdrop-blur-sm flex-1" />
-                </div>
+                <div className="lg:hidden fixed inset-0 z-40 flex bg-stone-900/40 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
             )}
-            {mobileOpen && (
-                <div className="md:hidden fixed top-0 left-0 bottom-0 z-50 w-60">
-                    <SidebarBody />
-                </div>
-            )}
+            
+            {/* Mobile Sidebar Frame */}
+            <div className={`lg:hidden fixed top-0 left-0 bottom-0 z-50 w-72 transform transition-transform duration-300 ease-in-out ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                <SidebarBody />
+            </div>
         </>
     );
 }

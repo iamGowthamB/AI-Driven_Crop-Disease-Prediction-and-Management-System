@@ -33,7 +33,7 @@
 
 /* ═══════════════════════════════════════
    AGRI-TECH INTELLIGENCE CONSOLE
-   Global Design System
+   Global Design System (Light Theme)
 ═══════════════════════════════════════ */
 
 * {
@@ -49,8 +49,8 @@ body,
 }
 
 body {
-    background-color: var(--color-agri-dark);
-    color: var(--color-agri-text);
+    background-color: #FDFBF7;
+    color: #1c1917; /* stone-900 */
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -58,97 +58,101 @@ body {
 
 /* ═══ SCROLLBAR ═══ */
 ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--agri-dark);
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--agri-border);
-    border-radius: 2px;
+    background: #e7e5e4; /* stone-200 */
+    border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--agri-green);
+    background: #10b981; /* emerald-500 */
 }
 
 /* ═══ TYPOGRAPHY ═══ */
 @layer components {
     .h1-console {
-        @apply font-display font-bold text-white leading-none tracking-tight;
+        @apply font-display font-bold text-stone-900 leading-none tracking-tight;
         font-size: clamp(1.75rem, 3vw, 2.5rem);
     }
 
     .h2-console {
-        @apply font-display font-semibold text-white tracking-tight;
+        @apply font-display font-semibold text-stone-900 tracking-tight;
     }
 
     .label-console {
-        @apply text-[10px] font-mono uppercase tracking-[0.2em] text-agri-text/50;
+        @apply text-[10px] font-mono uppercase tracking-[0.2em] text-stone-500;
     }
 
     /* ═══ CARDS ═══ */
     .console-card {
-        @apply bg-agri-surface border border-agri-border rounded-sm p-6;
+        @apply bg-white border border-stone-200 shadow-xl shadow-stone-200/50 rounded-3xl p-6;
     }
 
     .console-card-dark {
-        @apply bg-agri-dark border border-agri-border rounded-sm p-6;
+        @apply bg-stone-900 border border-stone-800 shadow-xl shadow-stone-900/20 rounded-3xl p-6 text-white;
     }
 
     /* ═══ BUTTONS ═══ */
     .btn-primary {
-        @apply inline-flex items-center gap-2 px-5 py-2.5 bg-agri-green text-white text-xs font-semibold uppercase tracking-widest rounded-sm hover:bg-agri-green/80 active:scale-95 transition-all duration-150 disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 text-white text-sm font-bold rounded-xl hover:bg-emerald-700 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-emerald-600/25 disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed;
     }
 
     .btn-outline {
-        @apply inline-flex items-center gap-2 px-5 py-2.5 border border-agri-border text-agri-text/60 text-xs font-semibold uppercase tracking-widest rounded-sm hover:border-agri-text/40 hover:text-agri-text transition-all duration-150;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-stone-200 text-stone-700 text-sm font-bold rounded-xl hover:border-stone-300 hover:bg-stone-50 hover:shadow-sm transition-all;
     }
 
     .btn-danger {
-        @apply inline-flex items-center gap-2 px-5 py-2.5 border border-agri-red/40 text-agri-red text-xs font-semibold uppercase tracking-widest rounded-sm hover:bg-agri-red/10 transition-all duration-150;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-50 border border-red-200 text-red-600 text-sm font-bold rounded-xl hover:bg-red-100 transition-all;
     }
 
     /* ═══ INPUTS ═══ */
     .input-field {
-        @apply w-full px-4 py-3 bg-agri-dark border border-agri-border text-agri-text placeholder-agri-text/30 text-sm font-sans rounded-sm focus:outline-none focus:border-agri-green transition-colors duration-200;
+        @apply w-full px-4 py-3 bg-stone-50/50 border border-stone-200 text-stone-900 placeholder-stone-400 text-sm font-medium rounded-xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all shadow-sm;
     }
 
     /* ═══ BADGES ═══ */
     .badge {
-        @apply inline-flex items-center px-2 py-0.5 text-[9px] font-mono uppercase tracking-[0.15em] rounded-sm border;
+        @apply inline-flex items-center px-3 py-1 text-xs font-bold rounded-full;
     }
 
     .badge-green {
-        @apply bg-agri-green/10 text-agri-green border-agri-green/30;
+        @apply bg-green-100 text-green-700 border-green-200 border;
+    }
+
+    .badge-emerald {
+        @apply bg-emerald-100 text-emerald-700 border-emerald-200 border;
     }
 
     .badge-red {
-        @apply bg-agri-red/10 text-agri-red border-agri-red/30;
+        @apply bg-red-100 text-red-700 border-red-200 border;
     }
 
     .badge-amber {
-        @apply bg-agri-amber/10 text-agri-amber border-agri-amber/30;
+        @apply bg-amber-100 text-amber-700 border-amber-200 border;
     }
 
     .badge-grey {
-        @apply bg-agri-text/5 text-agri-text/50 border-agri-border;
+        @apply bg-stone-100 text-stone-600 border-stone-200 border;
     }
 
     /* ═══ TABLES ═══ */
     .table-header {
-        @apply px-5 py-3 text-[10px] font-mono uppercase tracking-widest text-agri-text/40 bg-agri-dark border-b border-agri-border text-left;
+        @apply px-5 py-4 text-xs font-bold uppercase tracking-wider text-stone-500 bg-stone-50/50 border-b border-stone-200 text-left;
     }
 
     .table-cell {
-        @apply px-5 py-4 text-sm font-sans border-b border-agri-border/50;
+        @apply px-5 py-4 text-sm font-medium text-stone-700 border-b border-stone-100;
     }
 
     /* ═══ SPINNER ═══ */
     .spinner {
-        @apply inline-block w-5 h-5 border-2 border-agri-border border-t-agri-green rounded-full animate-spin;
+        @apply inline-block w-6 h-6 border-4 border-stone-100 border-t-emerald-500 rounded-full animate-spin;
     }
 }

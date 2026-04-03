@@ -15,7 +15,7 @@ public class DiseaseKnowledge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String diseaseName;
 
     @Column(nullable = false)

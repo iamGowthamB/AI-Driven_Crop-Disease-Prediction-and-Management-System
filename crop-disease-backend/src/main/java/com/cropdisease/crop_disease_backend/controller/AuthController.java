@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @RestController
@@ -53,6 +54,13 @@ public class AuthController {
     public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.get("email"), request.get("password")));
+
+        // Record last login timestamp
+        userRepository.findByEmail(request.get("email")).ifPresent(user -> {
+            user.setLastLoginAt(LocalDateTime.now());
+            userRepository.save(user);
+        });
+
         String token = jwtUtils.generateToken(request.get("email"));
         return ResponseEntity.ok(Map.of("token", token));
     }

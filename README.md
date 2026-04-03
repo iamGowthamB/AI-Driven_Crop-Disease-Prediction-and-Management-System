@@ -1,18 +1,24 @@
-# 🌱 AI-Driven Crop Disease Prediction and Management System
+# 🌱 AI-Driven Crop Disease Prediction & Management System
 
-## 📌 Overview
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Java](https://img.shields.io/badge/Java-17+-007396?style=flat-square&logo=java&logoColor=white)](https://www.oracle.com/java/)
+[![React](https://img.shields.io/badge/React-18.2+-61DAFB?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.1+-6DB33F?style=flat-square&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Flask](https://img.shields.io/badge/Flask-3.0+-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
 
-This project is an AI-powered crop disease prediction system built using:
+An advanced AI-powered ecosystem designed to empower farmers and agricultural enthusiasts with real-time crop disease diagnosis, weather-based risk intelligence, and multilingual expert support.
 
-- 🧠 CNN (MobileNetV2 – Transfer Learning)
-- 🐍 Flask (ML Microservice)
-- ☕ Spring Boot (Backend API)
-- 🤖 AI Assistant (Floating Chatbot with FAQ Context)
-- 🌡️ Weather Risk Intelligence (Real-time Disease Forecasting)
-- 🌎 Multi-Language Support (English, Hindi, Tamil)
-- 🛡️ Admin Intelligence Console (Secured Knowledge Base Management)
-- ⚛️ React 18+ (Vite) / Spring Boot 3+ / Flask 3+
-- 🗄️ MySQL (Relational Diagnostic Storage)
+---
+
+## ✨ Key Features
+
+- **🧠 Deep Learning Diagnosis**: State-of-the-art CNN (MobileNetV2) with 93% accuracy for instant leaf disease detection.
+- **🌡️ Weather Intelligence**: Real-time forecasting and disease risk assessment based on local climatic conditions.
+- **🤖 Smart AI Assistant**: Floating chatbot with semantic search capabilities to answer your agricultural queries.
+- **🌎 Multilingual Support**: Accessible in **English, Hindi, and Tamil**, ensuring inclusivity for diverse users.
+- **🛡️ Admin Console**: A secure, high-performance management dashboard for knowledge base curation and system monitoring.
+- **📱 Responsive UI**: A premium, modern dashboard built with React 18 and Vite for a seamless user experience.
 
 ---
 
@@ -29,72 +35,73 @@ graph TD
     Admin -->|JPA| DB[(MySQL)]
 ```
 
+---
+
+## 🧠 Machine Learning Engine
+
+- **Architecture**: MobileNetV2 (Transfer Learning)
+- **Dataset**: PlantVillage (15 Classes)
+- **Crops Supported**: Tomato, Potato, Pepper (Bell)
+- **Input**: High-resolution leaf imagery
+- **Output**: Disease classification with confidence score and management protocol
 
 ---
 
-## 🧠 Machine Learning Model
+## 🚀 Getting Started
 
-- Architecture: MobileNetV2 (Pretrained CNN)
-- Technique: Transfer Learning
-- Dataset: PlantVillage (15 Classes)
-- Accuracy: ~93% Validation Accuracy
-- Model Format: `.keras`
+### Prerequisites
+- JDK 17+
+- Python 3.9+
+- Node.js 18+
+- MySQL 8.0+
 
-### Supported Crops:
-- Tomato
-- Potato
-- Pepper (Bell)
-
----
-
-## 🚀 How to Run the Project
-
----
-
-### 🔹 1️⃣ Run Flask ML Service
-
-# windows
+### 🔹 1. Flask ML Service
 ```bash
 cd flask-ml-service
 python -m venv venv
-venv\Scripts\activate   # Windows
-pip install -r requirements.txt
-python app.py
-
-# Mac
-cd flask-ml-service
-python3 -m venv venv
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
 source venv/bin/activate
+
 pip install -r requirements.txt
 python app.py
+```
+*Runs on: `http://localhost:5000`*
 
-Runs on:
-
-http://localhost:5000
-
-🔹 2️⃣ Run Spring Boot Backend
-
-cd backend
+### 🔹 2. Spring Boot Backend
+```bash
+cd crop-disease-backend
 mvn spring-boot:run
+```
+*Runs on: `http://localhost:8080`*
 
-Runs on:
-
-http://localhost:8080
-
-🔹 3️⃣ Run Frontend (React)
-
-cd frontend
+### 🔹 3. React Frontend
+```bash
+cd crop-disease-frontend
 npm install
 npm run dev
+```
+*Runs on: `http://localhost:5173`*
 
-Runs on:
+---
 
-http://localhost:5173
+## 📂 Project Structure
 
-
-📂 Project Structure
+```text
 AI-Driven_Crop-Disease-Prediction/
-│
-├── crop-disease-frontend/
-├── crop-disease-backend/
-└── flask-ml-service/
+├── ⚛️ crop-disease-frontend/   # React/Vite UI
+├── ☕ crop-disease-backend/    # Spring Boot REST API
+└── 🐍 flask-ml-service/       # TensorFlow/Flask Model Serving
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you'd like to improve the model accuracy, add support for more crops, or enhance the UI, feel free to fork the repo and submit a PR.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

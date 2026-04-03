@@ -4,6 +4,7 @@ import { useAuth } from './context/AuthContext.jsx';
 import Layout from './components/layout/Layout.jsx';
 
 // Pages
+import Landing from './pages/Landing.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Dashboard from './pages/Dashboard.jsx';
@@ -35,7 +36,7 @@ function AdminRoute({ children }) {
   const { user, loading } = useAuth();
   if (loading) return null;
   if (!user) return <Navigate to="/login" replace />;
-  if (user.role !== 'ADMIN') return <Navigate to="/" replace />;
+  if (user.role !== 'ADMIN') return <Navigate to="/dashboard" replace />;
   return children;
 }
 
@@ -44,14 +45,15 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         {/* Public Routes */}
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
         {/* Protected User Routes */}
-        <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
-          <Route index element={<Dashboard />} />
-          <Route path="scan" element={<Scan />} />
-          <Route path="history" element={<History />} />
+        <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/scan" element={<Scan />} />
+          <Route path="/history" element={<History />} />
           <Route path="weather" element={<WeatherRisk />} />
           <Route path="encyclopedia" element={<Encyclopedia />} />
           <Route path="chatbot" element={<Chatbot />} />
